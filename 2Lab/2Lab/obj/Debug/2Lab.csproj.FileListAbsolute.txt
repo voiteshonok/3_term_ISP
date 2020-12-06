@@ -1,0 +1,7 @@
+D:\3_term_ISP\2Lab\2Lab\bin\Debug\2Lab.exe.config
+D:\3_term_ISP\2Lab\2Lab\bin\Debug\2Lab.exe
+D:\3_term_ISP\2Lab\2Lab\bin\Debug\2Lab.pdb
+D:\3_term_ISP\2Lab\2Lab\obj\Debug\2Lab.csprojAssemblyReference.cache
+D:\3_term_ISP\2Lab\2Lab\obj\Debug\2Lab.csproj.CoreCompileInputs.cache
+D:\3_term_ISP\2Lab\2Lab\obj\Debug\2Lab.exe
+D:\3_term_ISP\2Lab\2Lab\obj\Debug\2Lab.pdb
