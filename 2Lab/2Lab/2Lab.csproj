@@ -55,6 +55,7 @@
       <DependentUpon>ETL.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
+    <Compile Include="Tracer.cs" />
     <Compile Include="MyInstaller.cs">
       <SubType>Component</SubType>
     </Compile>

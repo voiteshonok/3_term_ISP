@@ -14,9 +14,10 @@ namespace _2Lab
 {
     public partial class ETL : ServiceBase
     {
-        Logger logger;
+        Tracer logger;
         string source = "D:\\" + "Source\\";
         string target = "D:\\" + "Target\\";
+        string log = "D:\\" + "logs.txt";
         public ETL()
         {
             InitializeComponent();
@@ -26,8 +27,9 @@ namespace _2Lab
         {
             Directory.CreateDirectory(source);
             Directory.CreateDirectory(target);
+            File.Create(log).Close();
 
-            logger = new Logger(source, target);
+            logger = new Tracer(source, target, log);
             Thread loggerThread = new Thread(new ThreadStart(logger.Start));
             loggerThread.Start();
         }
@@ -43,6 +45,11 @@ namespace _2Lab
             try
             {
                 Directory.Delete(target, true);
+            }
+            catch { }
+            try
+            {
+                File.Delete(log);
             }
             catch { }
         }
