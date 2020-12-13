@@ -1,0 +1,22 @@
+﻿Выполняется установка сборки 'D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   assemblypath = D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.exe
+   logfile = D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.InstallLog
+Устанавливается служба MyETL...
+Служба MyETL успешно установлена.
+Создается исходный EventLog MyETL в журнале Application...
+Выполняется фиксация сборки 'D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   assemblypath = D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.exe
+   logfile = D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.InstallLog
+Выполняется удаление сборки 'D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.exe'.
+Затронуты следующие параметры:
+   logtoconsole = 
+   assemblypath = D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.exe
+   logfile = D:\3_term_ISP\3Lab\3Lab\bin\Debug\3lab.InstallLog
+Выполняется удаление источника EventLog MyETL.
+Выполняется удаление службы MyETL из системы...
+Служба MyETL успешно удалена из системы.
+Попытка останова службы MyETL.

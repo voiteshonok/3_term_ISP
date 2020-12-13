@@ -10,20 +10,24 @@ namespace _3Lab
 {
     class Tracer
     {
+        OptionsManager optionsManager;
         FileSystemWatcher watcher;
         bool enabled = true;
-        string sourceFolder;
-        string targetFolder;
         string loggerPath;
         Logger logger;
 
-        public Tracer(string source, string target, string loggerPath)
+        public Tracer(string path)
         {
-            this.sourceFolder = source;
-            this.targetFolder = target;
-            this.loggerPath = loggerPath;
+            loggerPath = path + "logs.txt";
+            File.Create(loggerPath).Close();
             logger = new Logger(loggerPath);
-            watcher = new FileSystemWatcher(source);
+            optionsManager = new OptionsManager(path, logger);
+
+            FolderOptions opt = optionsManager.GetOptions<FolderOptions>() as FolderOptions;
+            Directory.CreateDirectory(opt.SourceFolder);
+            Directory.CreateDirectory(opt.TargetFolder);
+
+            watcher = new FileSystemWatcher(opt.SourceFolder);
             watcher.Created += Created;
         }
 
@@ -37,16 +41,17 @@ namespace _3Lab
         }
         public void Stop()
         {
+            FolderOptions opt = optionsManager.GetOptions<FolderOptions>() as FolderOptions;
             watcher.EnableRaisingEvents = false;
             enabled = false;
             try
             {
-                Directory.Delete(sourceFolder, true);
+                Directory.Delete(opt.SourceFolder, true);
             }
             catch { }
             try
             {
-                Directory.Delete(targetFolder, true);
+                Directory.Delete(opt.TargetFolder, true);
             }
             catch { }
             try
@@ -66,33 +71,57 @@ namespace _3Lab
 
             Encrypt(e.FullPath);
 
-            Compress(e.FullPath, $"{targetFolder}{time}.txt.gz");
+            Compress(e.FullPath, time);
 
-            Decompress($"{targetFolder}{time}.txt.gz");
+            Decompress(time);
 
-            Decrypt($"{targetFolder}{time}.txt");
+            Decrypt(time);
         }
 
+        /// <summary>
+        /// encrypting file by path
+        /// </summary>
+        /// <param name="path"></param>
         private void Encrypt(string path)
         {
-            Encryptor.Crypt(path);
+            EncryptOptions encryptOptions = optionsManager.GetOptions<EncryptOptions>() as EncryptOptions;
+            Encryptor.Crypt(path, encryptOptions);
             logger.Logging("crypted", path);
         }
 
-        private void Compress(string path, string name)
+        /// <summary>
+        /// compressing file and moving to TargetFolder
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="time"></param>
+        private void Compress(string path, string time)
         {
-            Archivator.Compress(path, name);
-            logger.Logging($"compressed from {path} to {name}");
+            ETLOptions options = optionsManager.GetOptions<ETLOptions>() as ETLOptions;
+            string newPath = $"{options.FolderOptions.TargetFolder}{time}.txt.gz";
+            Archivator.Compress(path, newPath, options.ArchiveOptions);
+            logger.Logging($"compressed from {path} to {newPath}");
         }
 
-        private void Decompress(string path)
+        /// <summary>
+        /// decompressing file in this folder
+        /// </summary>
+        /// <param name="time"></param>
+        private void Decompress(string time)
         {
+            ETLOptions options = optionsManager.GetOptions<ETLOptions>() as ETLOptions;
+            string path = $"{options.FolderOptions.TargetFolder}{time}.txt.gz";
             Archivator.Decompress(path);
             logger.Logging("decompressed", path);
         }
 
-        private void Decrypt(string path)
+        /// <summary>
+        /// decrypting file
+        /// </summary>
+        /// <param name="time"></param>
+        private void Decrypt(string time)
         {
+            ETLOptions options = optionsManager.GetOptions<ETLOptions>() as ETLOptions;
+            string path = $"{options.FolderOptions.TargetFolder}{time}.txt";
             Encryptor.Decrypt(path);
             logger.Logging("decrypted", path);
         }

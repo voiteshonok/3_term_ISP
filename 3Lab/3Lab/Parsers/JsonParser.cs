@@ -18,7 +18,6 @@ namespace _3Lab
                 foreach (var key in jDoc.RootElement.EnumerateObject())
                 {
                     keys.Add(key.Name, key.Value.ToString());
-                    Console.WriteLine(key.Name + "\t" + key.Value.ToString());
                 }
             }
             catch

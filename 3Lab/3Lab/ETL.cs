@@ -15,9 +15,7 @@ namespace _3Lab
     public partial class ETL : ServiceBase
     {
         Tracer tracer;
-        string source = "D:\\" + "Source\\";
-        string target = "D:\\" + "Target\\";
-        string log = "D:\\" + "logs.txt";
+        string path = "D:\\";
         public ETL()
         {
             InitializeComponent();
@@ -27,11 +25,7 @@ namespace _3Lab
         {
             //System.Diagnostics.Debugger.Launch();
 
-            Directory.CreateDirectory(source);
-            Directory.CreateDirectory(target);
-            File.Create(log).Close();
-
-            tracer = new Tracer(source, target, log);
+            tracer = new Tracer(path);
             Thread loggerThread = new Thread(new ThreadStart(tracer.Start));
             loggerThread.Start();
         }

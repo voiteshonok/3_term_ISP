@@ -24,8 +24,6 @@ namespace _3Lab
                 using (StreamReader sr = new StreamReader($"{path}\\config.xml"))
                 {
                     options = sr.ReadToEnd();
-                    ///TODO убрать
-                    Console.WriteLine("WWE");
                 }
                 xmlConfigured = true;
                 xmlOptions = new ETLXmlOptions(options);
@@ -39,8 +37,6 @@ namespace _3Lab
                 using (StreamReader sr = new StreamReader($"{path}\\appsettings.json"))
                 {
                     options = sr.ReadToEnd();
-                    ///TODO убрать
-                    Console.WriteLine("Jsonnnns");
                 }
                 jsonConfigured = true;
                 jsonOptions = new ETLJsonOptions(options);

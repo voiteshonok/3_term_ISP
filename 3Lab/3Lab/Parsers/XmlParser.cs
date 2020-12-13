@@ -23,8 +23,6 @@ namespace _3Lab
                 foreach (XmlNode key in xDoc.DocumentElement)
                 {
                     keys.Add(key.Name, key.OuterXml);
-                    ///TODO убрать
-                    Console.WriteLine(key.Name + "\t" + key.OuterXml);
                 }
             }
             catch
@@ -48,8 +46,6 @@ namespace _3Lab
                 foreach (XmlNode key in xDoc.DocumentElement)
                 {
                     keys.Add(key.Name, key.InnerText);
-                    ///TODO убрать
-                    Console.WriteLine(key.Name + "\t" + key.OuterXml);
                 }
                 return keys[value];
             }

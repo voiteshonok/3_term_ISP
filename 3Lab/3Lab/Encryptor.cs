@@ -13,12 +13,7 @@ namespace _3Lab
         static Encryptor()
         {
             cryptic = new DESCryptoServiceProvider();
-
-            //cryptic.Key = Encoding.UTF8.GetBytes("ABCDEFGH");
-            //cryptic.IV = Encoding.UTF8.GetBytes("ABCDEFGH");
         }
-
-
 
         public static void Crypt(string path, EncryptOptions encryptOptions)
         {
