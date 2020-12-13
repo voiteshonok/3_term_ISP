@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _3Lab
 {
@@ -16,14 +14,16 @@ namespace _3Lab
         {
             cryptic = new DESCryptoServiceProvider();
 
-            cryptic.Key = Encoding.UTF8.GetBytes("ABCDEFGH");
-            cryptic.IV = Encoding.UTF8.GetBytes("ABCDEFGH");
+            //cryptic.Key = Encoding.UTF8.GetBytes("ABCDEFGH");
+            //cryptic.IV = Encoding.UTF8.GetBytes("ABCDEFGH");
         }
 
 
 
-        public static void Crypt(string path)
+        public static void Crypt(string path, EncryptOptions encryptOptions)
         {
+            cryptic.Key = encryptOptions.key;
+            cryptic.IV = encryptOptions.key;
             string text;
             using (StreamReader sr = new StreamReader(path))
             {

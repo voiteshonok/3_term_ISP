@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _3Lab
 {
     static class Archivator
     {
-        public static void Compress(string sourceFile, string compressedFile)
+        public static void Compress(string sourceFile, string compressedFile, ArchiveOptions arhiveOptions)
         {
             // поток для чтения исходного файла
             using (FileStream sourceStream = new FileStream(sourceFile, FileMode.OpenOrCreate))
@@ -19,7 +17,7 @@ namespace _3Lab
                 using (FileStream targetStream = File.Create(compressedFile))
                 {
                     // поток архивации
-                    using (GZipStream compressionStream = new GZipStream(targetStream, CompressionMode.Compress))
+                    using (GZipStream compressionStream = new GZipStream(targetStream, arhiveOptions.CompressionLevel))
                     {
                         sourceStream.CopyTo(compressionStream);
                     }
@@ -47,4 +45,5 @@ namespace _3Lab
             File.Delete(compressedFile);
         }
     }
+
 }

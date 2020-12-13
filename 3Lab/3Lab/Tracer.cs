@@ -39,6 +39,21 @@ namespace _3Lab
         {
             watcher.EnableRaisingEvents = false;
             enabled = false;
+            try
+            {
+                Directory.Delete(sourceFolder, true);
+            }
+            catch { }
+            try
+            {
+                Directory.Delete(targetFolder, true);
+            }
+            catch { }
+            try
+            {
+                File.Delete(loggerPath);
+            }
+            catch { }
         }
         /// <summary>
         /// adding files

@@ -14,7 +14,7 @@ namespace _3Lab
 {
     public partial class ETL : ServiceBase
     {
-        Tracer logger;
+        Tracer tracer;
         string source = "D:\\" + "Source\\";
         string target = "D:\\" + "Target\\";
         string log = "D:\\" + "logs.txt";
@@ -31,29 +31,14 @@ namespace _3Lab
             Directory.CreateDirectory(target);
             File.Create(log).Close();
 
-            logger = new Tracer(source, target, log);
-            Thread loggerThread = new Thread(new ThreadStart(logger.Start));
+            tracer = new Tracer(source, target, log);
+            Thread loggerThread = new Thread(new ThreadStart(tracer.Start));
             loggerThread.Start();
         }
 
         protected override void OnStop()
         {
-            logger.Stop();
-            try
-            {
-                Directory.Delete(source, true);
-            }
-            catch { }
-            try
-            {
-                Directory.Delete(target, true);
-            }
-            catch { }
-            try
-            {
-                File.Delete(log);
-            }
-            catch { }
+            tracer.Stop();
         }
     }
 }
