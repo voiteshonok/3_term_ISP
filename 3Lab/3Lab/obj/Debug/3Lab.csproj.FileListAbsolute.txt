@@ -1,0 +1,7 @@
+D:\3_term_ISP\3Lab\3Lab\bin\Debug\3Lab.exe.config
+D:\3_term_ISP\3Lab\3Lab\bin\Debug\3Lab.exe
+D:\3_term_ISP\3Lab\3Lab\bin\Debug\3Lab.pdb
+D:\3_term_ISP\3Lab\3Lab\obj\Debug\3Lab.csprojAssemblyReference.cache
+D:\3_term_ISP\3Lab\3Lab\obj\Debug\3Lab.csproj.CoreCompileInputs.cache
+D:\3_term_ISP\3Lab\3Lab\obj\Debug\3Lab.exe
+D:\3_term_ISP\3Lab\3Lab\obj\Debug\3Lab.pdb
